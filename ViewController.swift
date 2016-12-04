@@ -12,8 +12,16 @@ class ViewController: UITableViewController{
     
     var pictures = [String]()
     
+    override func tableView(_ tableView:UITableView, didSelectRowAt indexPath: IndexPath){
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "Detail") as? DetailViewController {
+            vc.selectedImage = pictures[indexPath.row]
+            navigationController?.pushViewController(vc,animated:true)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "StormViewer"
         
         let fm = FileManager.default
         let path = Bundle.main.resourcePath
